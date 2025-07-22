@@ -1,0 +1,15 @@
+from typing import List
+class Solution:
+    def removeSubfolders(self, folder: List[str]) -> List[str]:
+        folder.sort()
+        
+        res = []
+        prev = ""  # to track the last added top-level folder
+        
+        for f in folder:
+            # Check if current folder is a sub-folder of 'prev'
+            if not prev or not f.startswith(prev + "/"):
+                res.append(f)
+                prev = f  # update the last added top-level folder
+        
+        return res
